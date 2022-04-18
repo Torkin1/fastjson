@@ -18,7 +18,7 @@
         <gpg.skip>true</gpg.skip>
         <javadoc.skip>true</javadoc.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jdk.version>1.5</jdk.version>
+        <jdk.version>1.6</jdk.version> <!-- upstream set this to 1.5, but made compiler go in error-->
     </properties>
 
     <scm>
