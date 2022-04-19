@@ -1,20 +1,50 @@
 package com.alibaba.json.bvt.serializer;
 
 import org.junit.Assert;
-import junit.framework.TestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized.Parameters;
+
+import edu.emory.mathcs.backport.java.util.Arrays;
+
+import org.junit.runners.Parameterized;
+
+import java.util.Collection;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class JSONFieldTest extends TestCase {
+
+@RunWith(Parameterized.class)
+public class JSONFieldTest {
+	
+	private String expected;
+	private VO vo;
+	
+	private void configure(VO vo, int id, String name){
+
+		vo.setId(id);
+		vo.setName(name);
+	}
+	
+	public JSONFieldTest(VO vo, int id, String name, String expected){
+		configure(vo, id, name);
+		this.vo = vo;
+		this.expected = expected;
+	}
+	
+	@Parameters
+	public static Collection getParams(){
+		return Arrays.asList(new Object[][]{
+			{new VO(), 123, "xx", "{\"id\":123}"}
+		});
+	}
+	
+	@Test
 	public void test_jsonField() throws Exception {
-		VO vo = new VO();
 		
-		vo.setId(123);
-		vo.setName("xx");
-		
-		String text = JSON.toJSONString(vo);
-		Assert.assertEquals("{\"id\":123}", text);
+		String text = JSON.toJSONString(this.vo);
+		Assert.assertEquals(expected, text);
 	}
 
 	public static class VO {
