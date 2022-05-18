@@ -17,7 +17,9 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: zulu
-          java-version: 8.0.322+6
+          java-version: 11
+      - name: Install local JDK 8
+        run: ./installJdk8.sh && export JAVA_HOME=$(cat java_home)
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
