@@ -38,6 +38,7 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Torkin1_fastjson
       - name: Generate Ba-Dua report
         run: ./generateBaDuaReport.sh
+      - name: Upload Ba-Dua report
         uses: actions/upload-artifact@v3
         with:
           name: ba-dua-report
