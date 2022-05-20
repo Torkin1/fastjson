@@ -7,5 +7,4 @@
 *.iml
 /src/test/java/com/alibaba/json/bvt/parser/autoType/
 /bin/
-openlogic-openjdk-8u332-b09-linux-x64/
-java_home
+instrumented/
