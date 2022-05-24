@@ -71,9 +71,26 @@ public class MapTest {
     @Parameters
     public static Collection getParams(){
         return Arrays.asList(new Object[][]{
-            {"{'name':'jobs','id':33}", (Object)new JSONObject(), EnumSet.noneOf(SerializerFeature.class), MapTest.class, Arrays.asList(Map.of("name", "jobs"), Map.of("id", 33)).toArray((new Map[0]))},
-            {"{\"name\":null}", (Object)new JSONObject(), EnumSet.of(SerializerFeature.WriteMapNullValue), JSON.class, Arrays.asList(createOnlyKeysMap("name")).toArray((new Map[0]))},
-            {"{\"map\":{\"Ariston\":null}}", (Object)new MapTest.MapNullValue(), EnumSet.noneOf(SerializerFeature.class), JSON.class, Arrays.asList(createOnlyKeysMap("Ariston")).toArray((new Map[0]))}
+            {
+                "{'name':'jobs','id':33}",
+                (Object)new JSONObject(),
+                EnumSet.noneOf(SerializerFeature.class),
+                MapTest.class, 
+                Arrays.asList(Map.of("name", "jobs", "id", 33)).toArray((new Map[0]))
+            },
+            {
+                "{\"name\":null}",
+                (Object)new JSONObject(), 
+                EnumSet.of(SerializerFeature.WriteMapNullValue), 
+                JSON.class, 
+                Arrays.asList(createOnlyKeysMap("name")).toArray((new Map[0]))
+            },
+            {
+                "{\"map\":{\"Ariston\":null}}", 
+                (Object)new MapTest.MapNullValue(), 
+                EnumSet.noneOf(SerializerFeature.class), 
+                JSON.class, 
+                Arrays.asList(createOnlyKeysMap("Ariston")).toArray((new Map[0]))}
 
 		});
     }
