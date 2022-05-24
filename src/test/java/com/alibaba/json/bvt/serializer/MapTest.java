@@ -31,7 +31,7 @@ public class MapTest {
     private final String expected;
     private final Class<?> jsonParser;
     
-   public MapTest(String expected, Object holder, Set<SerializerFeature> features, Class<?> jsonParser, Map<String, Object>... couples) throws Exception {
+   public MapTest(String expected, Object holder, Set<SerializerFeature> features, Class<?> jsonParser, Map<String, Object> couples) throws Exception {
        this.expected = expected;
        this.holder = holder;
        this.features = features;
@@ -47,16 +47,14 @@ public class MapTest {
 
    }
 
-    private void configure(MapNullValue holder, Map<String, ?>... couples){
+    private void configure(MapNullValue holder, Map<String, ?> couples){
         holder.setMap(new HashMap<>());
         configure(holder.getMap(), couples);
         features.add(SerializerFeature.WriteMapNullValue);
     }
     
-    private void configure(Map<String, Object> map, Map<String, ?>... couples){
-        for ( Map<String, ?> couple : couples){
-            couple.forEach((k, v) -> map.put(k, v));
-        }
+    private void configure(Map<String, Object> map, Map<String, ?> couples){
+        couples.forEach((k, v) -> map.put(k, v));
 
     }
     
@@ -76,21 +74,22 @@ public class MapTest {
                 (Object)new JSONObject(),
                 EnumSet.noneOf(SerializerFeature.class),
                 MapTest.class, 
-                Arrays.asList(Map.of("name", "jobs", "id", 33)).toArray((new Map[0]))
+                Map.of("name", "jobs", "id", 33)
             },
             {
                 "{\"name\":null}",
                 (Object)new JSONObject(), 
                 EnumSet.of(SerializerFeature.WriteMapNullValue), 
                 JSON.class, 
-                Arrays.asList(createOnlyKeysMap("name")).toArray((new Map[0]))
+                createOnlyKeysMap("name")
             },
             {
                 "{\"map\":{\"Ariston\":null}}", 
                 (Object)new MapTest.MapNullValue(), 
                 EnumSet.noneOf(SerializerFeature.class), 
                 JSON.class, 
-                Arrays.asList(createOnlyKeysMap("Ariston")).toArray((new Map[0]))}
+               createOnlyKeysMap("Ariston")
+            }
 
 		});
     }
