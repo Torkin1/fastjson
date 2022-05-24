@@ -50,7 +50,6 @@ public class MapTest {
     private void configure(MapNullValue holder, Map<String, ?> couples){
         holder.setMap(new HashMap<>());
         configure(holder.getMap(), couples);
-        features.add(SerializerFeature.WriteMapNullValue);
     }
     
     private void configure(Map<String, Object> map, Map<String, ?> couples){
@@ -58,7 +57,7 @@ public class MapTest {
 
     }
     
-    private static Map<String, Void> createOnlyKeysMap(String... keys){
+    private static Map<String, Void> createKeysOnlyMap(String... keys){
         Map<String, Void> onlyKeysMap = new HashMap<>();
         for (String key : keys){
             onlyKeysMap.put(key, null);
@@ -81,14 +80,14 @@ public class MapTest {
                 (Object)new JSONObject(), 
                 EnumSet.of(SerializerFeature.WriteMapNullValue), 
                 JSON.class, 
-                createOnlyKeysMap("name")
+                createKeysOnlyMap("name")
             },
             {
                 "{\"map\":{\"Ariston\":null}}", 
                 (Object)new MapTest.MapNullValue(), 
                 EnumSet.noneOf(SerializerFeature.class), 
                 JSON.class, 
-               createOnlyKeysMap("Ariston")
+               createKeysOnlyMap("Ariston")
             }
 
 		});
