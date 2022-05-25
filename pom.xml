@@ -23,11 +23,9 @@
         <sonar.organization>torkin1</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <!-- ba-dua -->
-  <!--
         <ba-dua.version>0.6.0</ba-dua.version>
         <ba-dua.groupId>br.usp.each.saeg</ba-dua.groupId>
         <argLine>-javaagent:target/dependency/ba-dua-agent-rt-${ba-dua.version}-all.jar -Doutput.file=target/badua.ser</argLine>
-  -->
     </properties>
 
     <scm>
@@ -91,7 +89,6 @@
         <plugins>
 
             <!-- ba-dua -->
-            <!--
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -114,8 +111,8 @@
 					</execution>
 				</executions>
 			</plugin>
-        -->
- <!--      FIXME: Failed: Error while analyzing target/test-classes/com/alibaba/json/bvt/serializer/JSONFieldTest$VO.class.     
+            <!--      FIXME: Failed: Error while analyzing target/test-classes/com/alibaba/json/bvt/serializer/JSONFieldTest$VO.class. -->     
+            <!--
             <plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -142,7 +139,7 @@
 					</execution>
 				</executions>
 			</plugin>
-        -->   
+        -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -260,13 +257,11 @@
     <dependencies>
         
         <!-- ba-dua --> 
-        <!--
         <dependency>
             <groupId>${ba-dua.groupId}</groupId>
             <artifactId>ba-dua-cli</artifactId>
             <version>${ba-dua.version}</version>
         </dependency>
-    -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
