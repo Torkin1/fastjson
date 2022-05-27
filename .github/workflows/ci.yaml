@@ -30,19 +30,8 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Install ba-dua
-        run: ./installBaDua.sh 0.6.0
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Torkin1_fastjson
-      - name: Generate Ba-Dua report
-        run: ./generateBaDuaReport.sh target/test-classes target/badua.xml
-      - name: Upload Ba-Dua report
-        uses: actions/upload-artifact@v3
-        with:
-          name: ba-dua-report
-          path: target/badua.xml
-          if-no-files-found: error
-          retention-days: 90
