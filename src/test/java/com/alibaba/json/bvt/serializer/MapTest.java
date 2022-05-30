@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,9 +42,9 @@ public class MapTest {
            configure((JSONObject) holder, couples);
        } else if (holder instanceof MapNullValue) {
            configure((MapNullValue) holder, couples);
-       } else {
+       } /*else {
            throw new Exception(String.format("unsupported holder type: %s", holder.getClass().getName()));
-       }
+       }*/
 
    }
 
@@ -53,7 +54,9 @@ public class MapTest {
     }
     
     private void configure(Map<String, Object> map, Map<String, ?> couples){
-        couples.forEach((k, v) -> map.put(k, v));
+        if (couples != null){
+            couples.forEach((k, v) -> map.put(k, v));
+        }
 
     }
     
@@ -88,7 +91,14 @@ public class MapTest {
                 EnumSet.noneOf(SerializerFeature.class), 
                 JSON.class, 
                createKeysOnlyMap("Ariston")
-            }
+            },
+            {
+                "null",
+                null,
+                EnumSet.noneOf(SerializerFeature.class),
+                MapTest.class,
+                null
+            },
 
 		});
     }

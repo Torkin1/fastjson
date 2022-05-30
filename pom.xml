@@ -639,12 +639,9 @@
 
     <profiles>
         <profile>
-            <id>github_actions</id>
+            <id>jacoco</id>
             <activation>
-                <property>
-                    <name>env.GITHUB_ACTIONS</name>
-                    <value>true</value>
-                </property>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <build>
                 <plugins>
